@@ -1,74 +1,11 @@
 <!DOCTYPE html>
 <html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.2/gist-embed.min.js"></script>
+    <link rel="stylesheet" href="css/studies.css" type="text/css" />
+    <title>Travels</title>
 <head>
-    <title>Aaron's Awesome Travels</title>
     <style>
-        body {
-            background: rgb(125, 198, 205);
-            color: rgb(45, 45, 45);
-            padding: 10px;
-            font-family: arial;
-        }
-        header {
-            font-size: 1.5em;
-            font-weight: bold;
-            text-align: center;
-        }
-        [id=all-contents] {
-            max-width: 800px;
-            margin: auto;
-        }
-
-        /* navigation menu */
-        nav {
-            background: rgb(96, 96, 96);
-            margin: 0 auto;
-            margin-bottom: 20px;
-            display: flex;
-            padding: 10px;
-            border-radius: 15px;
-            border-color: black;
-            border-width: 5px;
-            border-style: solid;
-        }
-        nav header {
-            display: flex;
-            align-items: center;
-            color: rgb(255, 255, 255);
-            flex: 1;
-        }
-        nav ul {
-            list-style-image: none;
-        }
-        nav li {
-            display: inline-block;
-            padding: 0 10px;
-        }
-        nav a {
-            text-decoration: none;
-            color: #fff;
-        }
-
-        /* main container area beneath menu */
-        main {
-            background: rgb(245, 238, 219);
-            display: flex;
-        }
-        [class=sidebar] {
-            margin-right: 25px;
-            padding: 10px;
-        }
-        [class=sidebar] img {
-            width: 200px;
-        }
-
-        [class=content] img{
-            width: 300px;
-        }
-        [class=interests] header {
-            font-size: 1.25em;
-        }
-
         div.gallery {
             margin: 5px;
             border: 1px solid #ccc;
@@ -95,18 +32,18 @@
 <body>
 <div id="all-contents">
     <nav>
-        <ul>
-            <li><a href="index.html">Home</a>
-            </li>
-            <li><a href="portfolio.html">Portfolio</a>
-            </li>
-            <li><a href="studies.html">Studies</a>
-            </li>
-            <li><a href="travels.html">Travels</a>
-            </li>
-        </ul>
-
-    </nav>
+            <header>Aaron's Awesome Website</header>
+            <ul>
+                <li><a href="index.html">Home</a>
+                </li>
+                <li><a href="portfolio.html">Portfolio</a>
+                </li>
+                <li><a href="studies.html">Studies</a>
+                </li>
+                <li><a href="travels.html">Travels</a>
+                </li>
+            </ul>
+        </nav>
 
     <main>
 
@@ -114,64 +51,86 @@
 
         <div class="content">
             <header>
-                Aaron's Awesome Adventures
+                Adventures
             </header>
 
             <div class="gallery">
-                <a target="_blank" href="https://scontent-iad3-1.xx.fbcdn.net/v/t31.0-8/13958014_10107972595032565_3593452153664586935_o.jpg?oh=671cfeec6c0ec23c41a0c80d23a2fa5d&oe=59A06179">
-                    <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t31.0-8/13958014_10107972595032565_3593452153664586935_o.jpg?oh=671cfeec6c0ec23c41a0c80d23a2fa5d&oe=59A06179" alt="Fjords" width="300" height="200">
+                <a target="_blank" href="img/gondola.jpg">
+                    <img src="img/gondola.jpg" alt="Aaron in a gondola" width="300" height="200">
                 </a>
-                <div class="desc">Venice 2015</div>
+                <div class="desc">Venice 2015.</div>
             </div>
 
             <div class="gallery">
-                <a target="_blank" href="https://scontent-iad3-1.xx.fbcdn.net/v/t31.0-8/10945663_10106311671855925_7878470734010139012_o.jpg?oh=2e1febb60ec752586079d331dece99fc&oe=59A3DCD5">
-                    <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t31.0-8/10945663_10106311671855925_7878470734010139012_o.jpg?oh=2e1febb60ec752586079d331dece99fc&oe=59A3DCD5" alt="Forest" width="300" height="200">
+                <a target="_blank" href="img/falconry.jpg">
+                    <img src="img/falconry.jpg" alt="Aaron with a Falcon" width="300" height="200">
                 </a>
-                <div class="desc">Ireland 2016</div>
+                <div class="desc">Falconty in southern Ireland 2016.</div>
             </div>
 
             <div class="gallery">
-                <a target="_blank" href="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/484184_10101925915846125_2117390075_n.jpg?oh=aabeb707cc2313ecddc0a4019c8352a1&oe=59A794EC">
-                    <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.0-9/484184_10101925915846125_2117390075_n.jpg?oh=aabeb707cc2313ecddc0a4019c8352a1&oe=59A794EC" alt="Northern Lights" width="300" height="200">
+                <a target="_blank" href="img/Mexico.jpg">
+                    <img src="img/Mexico.jpg" alt="Friends taking pictures overlooking a city" width="300" height="200">
                 </a>
-                <div class="desc">Mexico 2011</div>
+                <div class="desc">That time I tried to learn some spanish, but made a few friends instead. Mexico 2011.</div>
             </div>
 
             <div class="gallery">
-                <a target="_blank" href="https://scontent-dft4-1.xx.fbcdn.net/v/t1.0-9/1917802_975240228725_1539824_n.jpg?oh=6d2d72f8f3665ebd036d3701cf797a64&oe=59ADC56B">
-                    <img src="https://scontent-dft4-1.xx.fbcdn.net/v/t1.0-9/1917802_975240228725_1539824_n.jpg?oh=6d2d72f8f3665ebd036d3701cf797a64&oe=59ADC56B" alt="Mountains" width="300" height="200">
+                <a target="_blank" href="img/laBoca.jpg">
+                    <img src="img/laBoca.jpg" alt="La Boca in Buenos Aires" width="300" height="200">
                 </a>
-                <div class="desc">La Boca Buenos Aires 2010</div>
+                <div class="desc">My Dad and I walking through La Boca in Buenos Aires 2010.</div>
             </div>
 
             <div class="gallery">
-                <a target="_blank" href="https://scontent-dft4-1.xx.fbcdn.net/v/t1.0-9/270017_10100764938419195_4713296_n.jpg?oh=7266f4f1c61951881b60fa46c985827d&oe=59B5AE06">
-                    <img src="https://scontent-dft4-1.xx.fbcdn.net/v/t1.0-9/270017_10100764938419195_4713296_n.jpg?oh=7266f4f1c61951881b60fa46c985827d&oe=59B5AE06" alt="Mountains" width="300" height="200">
+                <a target="_blank" href="img/Temple of the sun.jpg">
+                    <img src="img/Temple of the sun.jpg" alt="Teotihuacan in Mexico" width="300" height="200">
                 </a>
-                <div class="desc">Teotihuacan Pyramid of the Sun</div>
+                <div class="desc">Teotihuacan Pyramid of the Sun.</div>
+            </div>
+            
+             <div class="gallery">
+                <a target="_blank" href="img/capri.jpg">
+                    <img src="img/capri.jpg" alt="the isle of Capri italy" width="300" height="200">
+                </a>
+                <div class="desc">A boat tour of the Grottos of Capri.</div>
             </div>
 
             <div class="gallery">
-                <a target="_blank" href="https://scontent-dft4-1.xx.fbcdn.net/v/t31.0-8/14615633_10108262526203175_477664095445974644_o.jpg?oh=bf221a98c1cddac1e83f6033bec889b4&oe=59A51DF2">
-                    <img src="https://scontent-dft4-1.xx.fbcdn.net/v/t31.0-8/14615633_10108262526203175_477664095445974644_o.jpg?oh=bf221a98c1cddac1e83f6033bec889b4&oe=59A51DF2" alt="Mountains" width="300" height="200">
+                <a target="_blank" href="img/Forbidden_city.jpg">
+                    <img src="img/Forbidden_city.jpg" alt="The Forbidden city Beijing" width="300" height="200">
                 </a>
-                <div class="desc">The Forbidden City</div>
+                <div class="desc">The Forbidden City.</div>
             </div>
 
             <div class="gallery">
-                <a target="_blank" href="https://scontent-dft4-1.xx.fbcdn.net/v/t31.0-8/18623526_10109781583550075_6603202791868367783_o.jpg?oh=1d8e2baffbefac546f120b62577454da&oe=59B96BB9">
-                    <img src="https://scontent-dft4-1.xx.fbcdn.net/v/t31.0-8/18623526_10109781583550075_6603202791868367783_o.jpg?oh=1d8e2baffbefac546f120b62577454da&oe=59B96BB9" alt="Mountains" width="300" height="200">
+                <a target="_blank" href="img/The Coliseum.jpg">
+                    <img src="img/The Coliseum.jpg" alt="The Coliseum Rome Italy" width="300" height="200">
                 </a>
-                <div class="desc">The Isle of Capri</div>
+                <div class="desc">The Coliseum. </div>
+            </div>
+            
+            <div class="gallery">
+                <a target="_blank" href="img/the_great-wall.jpg">
+                    <img src="img/the_great_wall.jpg" alt="the great wall of China" width="300" height="200">
+                </a>
+                <div class="desc">My First stop in China. The Great Wall outside of Beijing.</div>
             </div>
 
             <div class="gallery">
-                <a target="_blank" href="https://scontent-dft4-1.xx.fbcdn.net/v/t31.0-8/18623248_10109781583555065_3765067109530137179_o.jpg?oh=37cc41e9b4107aff1a0179c6dad65319&oe=59A922C4">
-                    <img src="https://scontent-dft4-1.xx.fbcdn.net/v/t31.0-8/18623248_10109781583555065_3765067109530137179_o.jpg?oh=37cc41e9b4107aff1a0179c6dad65319&oe=59A922C4" alt="Mountains" width="300" height="200">
+                <a target="_blank" href="img/K&A seattle.jpg">
+                    <img src="img/K&A seattle.jpg" alt="Pike Place Market" width="300" height="200">
                 </a>
-                <div class="desc">The Coliseum</div>
+                <div class="desc">Hanging out at Pike Place Market in Seattle.</div>
             </div>
+
+            <div class="gallery">
+                <a target="_blank" href="img/Canadian_barat.jpg">
+                    <img src="img/Canadian_barat.jpg" alt="Barat with a secondLine Theme" width="300" height="200">
+                </a>
+                <div class="desc">Blending New Orleans Sound into a Hindu Wedding. Barat Secondline Toronto 2012.</div>
+            </div>
+
         </div>
 
     </main>
