@@ -77,3 +77,100 @@ function maybeNoises(obj) {
         }
     
 }
+
+function hasWord (stringOfWords, word) {
+    var string = stringOfWords.split(" ");
+    for (var i = 0; i < string.length; i++){
+        if(word.toUpperCase() === string[i].toUpperCase()){
+            return true;
+        }
+    }
+    return false;
+}
+
+function addFriend (name, obj) {
+    if(obj.hasOwnProperty('friends')){
+        obj.friends.push(name);
+        
+    }
+    return obj;
+    
+}
+
+function isFriend(name, obj){
+    if(obj.hasOwnProperty('friends')){
+        for(var i = 0; i < obj.friends.length; i++){
+            if(name === obj.friends[i]){
+                return true;
+            }
+        }
+       
+        
+    }
+     return false;
+}
+
+function nonFriends(name, list){
+  var nf =[];
+  var people =[];
+  var friends;
+  
+  for(var i = 0; i < list.length; i++){
+    if (name === list[i].name){
+      friends = list[i].friends;
+    }
+  }
+  
+  friends.push(name);
+  
+ for(var j = 0; j < list.length; j++){
+        people.push(list[j].name);
+   }
+  
+  for(var x = 0; x < people.length; x++){
+    var count = 0;
+    for(var y = 0; y < friends.length; y++){
+      if(friends[y] === people[x]){
+         count++;
+      }
+    }
+    if(count === 0){
+      nf.push(people[x]);
+    }
+  }
+  return nf;
+
+  
+}  
+
+function updateObject(obj, key, value){
+       obj[key] = value;
+       return obj;
+}
+  
+ function removeProperties(obj, array){
+     for(var i = 0; i < array.length; i++){
+         if(obj.hasOwnProperty(array[i])){
+             delete obj[array[i]];
+         }
+     }
+     return obj;
+ }
+ 
+ function dedup(arr){
+     var arr2 = [];
+     for(var i = 0; i < arr.length; i++ ){
+         var count = 0;
+         for(var j = 0; j < arr2.length; j++){
+             if(arr2[j] === arr[i]){
+                 count++;
+             }
+         }
+         if(count === 0){
+             arr2.push(arr[i]);
+         }
+         
+     }
+  return arr2;
+ }
+  
