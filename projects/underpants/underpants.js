@@ -421,8 +421,20 @@ _.some = function(collection, test){
 
 
 _.reduce = function(collection, action, seed){
-    if(Array.isArray(collection)){
-         var currentValue = seed;
+ 
+        if(!Array.isArray(collection)){
+       if(seed === undefined){
+          seed = 0
+       }
+      currentValue = seed;
+      for(var key in collection){
+          currentValue = action(collection[key], currentValue, key);
+          
+      }
+      return currentValue;
+    }else{
+   
+      var currentValue = seed;
       if(seed === undefined){
           seed = collection[0];
           for(let i = 1; i < collection.length; i++){
@@ -437,39 +449,9 @@ _.reduce = function(collection, action, seed){
           seed = currentValue;
       }
       return currentValue;
-
       }
   
-        
-   }else{
-        var currentValue = seed;
-        var count = 0;
-      if(seed === undefined){
-          for(let key in collection){
-            if(count === 0){
-                count++;
-                currentValue = action(seed);
-                seed = collection[key];
-                var start = collection[key];
-                
-            }else if(key !== start){
-              currentValue = action(collection[key], seed);
-              seed = currentValue;
-            }
-          }
-        return currentValue;
-      }else{
-      currentValue = seed;
-      for(let key in collection){
-          currentValue = action(collection[key], seed );
-          seed = currentValue;
-      }
-      return currentValue;
-
-      }
-  
-        
-    }
+}
   
   
 };
