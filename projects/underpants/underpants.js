@@ -421,19 +421,19 @@ _.some = function(collection, test){
 
 
 _.reduce = function(collection, action, seed){
-     if(Array.isArray(collection)){
+    if(Array.isArray(collection)){
          var currentValue = seed;
       if(seed === undefined){
           seed = collection[0];
           for(let i = 1; i < collection.length; i++){
-              currentValue = action(collection[i], seed);
+              currentValue = action(collection[i], seed, i);
               seed = currentValue;
           }
         return currentValue;
       }else{
       currentValue = seed;
       for(let i = 0; i < collection.length; i++){
-          currentValue = action(collection[i], seed);
+          currentValue = action(collection[i], seed, i);
           seed = currentValue;
       }
       return currentValue;
@@ -441,7 +441,7 @@ _.reduce = function(collection, action, seed){
       }
   
         
-    }else{
+   }else{
         var currentValue = seed;
         var count = 0;
       if(seed === undefined){
@@ -461,7 +461,7 @@ _.reduce = function(collection, action, seed){
       }else{
       currentValue = seed;
       for(let key in collection){
-          currentValue = action(collection[key], seed);
+          currentValue = action(collection[key], seed );
           seed = currentValue;
       }
       return currentValue;
