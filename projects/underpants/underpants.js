@@ -153,14 +153,11 @@ _.each = function (collection , action){
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 _.indexOf = function(arr, value){
-    if(!arr.includes(value)){
-        return -1;
-    }
-    for( var i = 0; i < arr.length; i++){
-        if(arr[i] === value){
-            return i;
-        }
-    }
+    var x = -1;
+  _.each(arr, function(e, i, c){if(e === value && x === -1){ x = i; }});
+  return x
+    
+    
 };
 
 /** _.filter()
@@ -213,7 +210,7 @@ _.reject = function (array, test){
     var rejected = [];
     
     var filtered = _.filter(array, test);
-    _.each(array, function(element, index , collection){if(!filtered.includes(element)){rejected.push(element);}
+    _.each(array, function(element, index , collection){if(!_.contains(filtered, element)){rejected.push(element);}
     });
     return rejected;
   
@@ -259,10 +256,12 @@ _.partition = function(array, test){
 */
 
 _.unique = function(array){
-    var uniqueElements =[];
-    _.each(array, function(element, index, collection){if(_.indexOf(collection, element) === index ){uniqueElements.push(element)}
+    var uE= [];
+    _.map(array, function(element, index, collection){if(!_.contains(uE, element) ){uE.push(element);}
+    
 });
-return uniqueElements;
+return uE;
+
 };
 
 
@@ -300,7 +299,6 @@ _.map = function(collection, action){
 */
 
 _.pluck = function(arrayOfObjects, property){
-    var propVals = [];
 return _.map(arrayOfObjects, function(Objects){return Objects[property]});
 };
 
@@ -353,7 +351,6 @@ _.every = function(collection, test){
     }else{
          mapped = _.map(collection, test);
     }
-  console.log(mapped)
     
      if(mapped.includes(false)){
       
@@ -393,7 +390,6 @@ _.some = function(collection, test){
     }else{
          mapped = _.map(collection, test);
     }
-  console.log(mapped)
     
      if(mapped.includes(true)){
       
@@ -401,7 +397,7 @@ _.some = function(collection, test){
     }else{
         return false;
     }
-}
+};
 
 /** _.reduce()
 * Arguments:
@@ -423,30 +419,59 @@ _.some = function(collection, test){
 */
 
 
-/**
-_.reduce = function(collection, action, seed){
-    if(seed === undefined){
-       seed = collection[0];
-        var currentValue = seed;
-  for(var i = 1; i < collection.length; i++){
-    currentValue = action(currentValue, collection[i], i);
-  }
-  return currentValue;
-    }
-   var currentValue = seed;
-  for(var i = 0; i < collection.length; i++){
-    currentValue = action(currentValue, collection[i], i);
-  }
-  return currentValue;
 
-  
-  
-};
-**/
 _.reduce = function(collection, action, seed){
-     var currentValue = seed;
-     _.each(collection, function(e, i, c){if(seed === undefined){seed = collection[0]; currentValue = -seed} currentValue = action(currentValue, e, i) } );
-     return currentValue;
+     if(Array.isArray(collection)){
+         var currentValue = seed;
+      if(seed === undefined){
+          seed = collection[0];
+          for(let i = 1; i < collection.length; i++){
+              currentValue = action(collection[i], seed);
+              seed = currentValue;
+          }
+        return currentValue;
+      }else{
+      currentValue = seed;
+      for(let i = 0; i < collection.length; i++){
+          currentValue = action(collection[i], seed);
+          seed = currentValue;
+      }
+      return currentValue;
+
+      }
+  
+        
+    }else{
+        var currentValue = seed;
+        var count = 0;
+      if(seed === undefined){
+          for(let key in collection){
+            if(count === 0){
+                count++;
+                currentValue = action(seed);
+                seed = collection[key];
+                var start = collection[key];
+                
+            }else if(key !== start){
+              currentValue = action(collection[key], seed);
+              seed = currentValue;
+            }
+          }
+        return currentValue;
+      }else{
+      currentValue = seed;
+      for(let key in collection){
+          currentValue = action(collection[key], seed);
+          seed = currentValue;
+      }
+      return currentValue;
+
+      }
+  
+        
+    }
+  
+  
 };
 
 /** _.extend()
@@ -465,8 +490,9 @@ _.reduce = function(collection, action, seed){
 */
 
 _.extend = function(object1, object2){
-    var args = Array.from(arguments);
-    _.each(args, function(e, i, c){args[0][e] = args[i + 1][e]} );
+   var args = Array.from(arguments);
+_.each(args, function(e, i, c){_.each(e, function(e, i, c){args[0][i] = e} )} );
+    return args[0];
 };
 
 
