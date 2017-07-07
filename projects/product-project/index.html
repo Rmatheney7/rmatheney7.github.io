@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="bower_components/lodash/lodash.min.js"></script>
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="/projects/product-project/.notes/css/myCss.css">
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="bower_components/notes/notes.js"></script>
+        <script type="text/javascript" src="js/lib/spin.min.js"></script>
+        <script type="text/javascript" src="js/view/pacifier.js"></script>
+        <script type="text/javascript" src="js/products.js"></script>
+        <title>Product Project</title>
+     
+        
+    </head>
+    <body>
+        <div id="container" class='container'>
+            <nav>
+                <div class="containter"> 
+                    <div class="flex-row">
+                        <div>
+                            <h1 >Product Project</h1>
+                        </div>
+                        
+                       
+                        
+                        <div class="flex-row">
+                             <div class="dropdown">
+                              <button ><a href="#myDropdown"  data-toggle="collapse" >Sort By</a></button>
+                              <div id="myDropdown" class="collapse dropdown-content" >
+                                  <ul>
+                                      <li type="all" data="all"><a href="#myDropdown"  data-toggle="collapse" >All</a></li>
+                                      <li type="phone" data='phone'><a href="#myDropdown"  data-toggle="collapse" >Phone</a></li>
+                                      <li type="case" data='case'><a href="#myDropdown"  data-toggle="collapse" >Case</a></li>
+                                  </ul>
+                              </div>
+                            </div>
+                            <div>
+                                <form class="col-md-6">
+                            <div>
+                                <input type="text" id="name" />
+                            </div> 
+                            </div>
+                            
+                            <div>
+                                <button >Search</button>
+                            </div>
+                            
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                
+            </nav>
+            <main>
+                <div id="products">
+                    
+                </div>
+                
+            </main>
+            
+        </div>
+        <script>
+            $(function () {
+               // window.opspark.notes.show();
+                window.opspark.notes.hide();
+            });
+        </script>
+    </body>
+</html>
