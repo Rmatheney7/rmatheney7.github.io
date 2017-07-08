@@ -38,7 +38,7 @@
                               </div>
                             </div>
                             <div>
-                                <form class="col-md-6">
+                                <form class="col-md-6 form" >
                             <div>
                                 <input type="text" id="name" />
                             </div> 
@@ -60,12 +60,17 @@
                     
                     
                 </div>
-                <div class="container">
+                <div class="container" style="padding-top : 60px;">
                     <div class="modal" id='itemModal'>
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class='modal-header'> <h2 id="modalTitle"></h2></div>
-                                <div class="modal-body"></div>
+                                <div class='modal-header'> 
+                                    <h2 class="modal-title" id="h2"></h2>
+                                    <button class="close" type="button" data-dismiss="modal">x</button>
+                                </div>
+                                <div class="modal-body" >
+                                    <div id="body"></div>
+                                </div>
                                 
                             </div> <!-- end .modal-content -->
                         </div> <!-- end .modal-dialog -->

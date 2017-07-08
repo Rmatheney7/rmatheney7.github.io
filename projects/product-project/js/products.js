@@ -21,14 +21,38 @@ $(document).ready(function () {
       return amount.toLocaleString('en-US',{ style: 'currency', currency: 'USD', minimumFractionDigits:2 });};
     
     
+     // Modal Creation //
+   var modalCreation = function(){
+     $('.item').on('click',function(event){
+      var $obj = $(event.currentTarget);
+      var $objData = $obj.data("item");
+      let $imageDiv = $('<div>');
+      let $image = $('<img>').addClass("image").attr('src', '/projects/product-project/img/product/' + $objData.image);
+      $imageDiv.append($image);
+      let $desc = $('<h2>').text($objData.desc + ".").addClass('col-md-10 ').addClass("desc").attr('id','h2');
+      let $price = $('<div>').text("Price: "+ toMoney($objData.price)).addClass("price");
+      let $stock = $('<div>').text(itemsLeft($objData.stock)).addClass("stock");
+      if($objData.stock <= 10){$stock.addClass('red')} // Low stock Alert //
+      let $itemDiv = $('<p>').attr('id','body').append( $imageDiv, $price,$stock);
+      $('#body').replaceWith($itemDiv);
+      $('#h2').replaceWith($desc);
+    });
+   };
+  
+        
+    
+    
     // Product Creation //
     var items = _.map(data,function(item){return item});
+   
+   
    function populateList(list){var sorted = _.map(list, function(item){
      $('#products').empty();
       let $imageDiv = $('<div>').addClass("col-md-2");
       let $image = $('<img>').addClass("image").attr('src', '/projects/product-project/img/product/thumbs/' + item.image);
       $imageDiv.append($image);
-      let $desc = $('<div>').text( item.desc).addClass('col-md-10 ').addClass("desc");
+      let $desc = $('<div>').text(item.desc + ".").addClass('col-md-10 ').addClass("desc");
+      $desc.append($('<a>').attr('href','#').attr('data-toggle','modal').attr('data-target', '#itemModal').text(' More Info'));
       let $price = $('<div>').text("Price: "+ toMoney(item.price)).addClass('col-md-4').addClass("price");
       let $stock = $('<div>').text(itemsLeft(item.stock)).addClass("col-md-4").addClass("stock");
       if(item.stock <= 10){$stock.addClass('red')} // Low stock Alert //
@@ -38,6 +62,9 @@ $(document).ready(function () {
       .addClass("row ")
       .data('item',item);
       });
+      
+      
+      
       // Product Css //
      $('#products').addClass('container').append(sorted);
      $(".item").css({'margin' : '35px', 'padding' : '20px', 'background-color': 'yellow', 'border-radius': '20px'});
@@ -46,42 +73,16 @@ $(document).ready(function () {
      $('.price').css('padding', '20px 0px 0px 60px ');
      $('.stock').css('padding' , '20px 0px 60px 60px');
      $('.desc').css('padding-left', '40px' );
+     
+     modalCreation();
    }
+   
    
    // Populate list of all items //
      populateList(items);
       
       
-      
-    
-      
-      // Modal Creation //
-    $('.item').on('click',function(event){
-      var $obj = $(event.currentTarget);
-      var $objData = $obj.data("item");
-      console.log($objData);
-      /*
-      const $item = $(event.currentTarget);
-      const $itemInfo = $item.data('item');
-      let $id = $('<div>').text("Id Num: "+ $itemInfo.id).addClass("id");
-      let $type = $('<div>').text("Item Type: "+ $itemInfo.type).addClass("type");
-      let $image = $('<div>').append($('<img>').addClass("image").attr('src', '/projects/product-project/img/product/' + $itemInfo.image));
-      let $desc = $('<div>').text("Description: "+ $itemInfo.desc).addClass("desc");
-      let $price = $('<div>').text("Price: "+ toMoney($itemInfo.price)).addClass("price");
-      let $color = $('<div>').text("Color: "+ $item.color).addClass("color");
-      let $colorsAvail = $('<div>').text("Colors available: "+ $itemInfo.availableColors," ").addClass("colorsAvail");
-      let $specs = $('<div>').text("Specs: "+ $itemInfo.specs + " ").addClass("spec");
-      let $stock = $('<div>').text(itemsLeft($itemInfo.stock)).addClass("stock");
-      let $itemDiv = $('<div>').append($id, $type, $image, $desc, $price, $color, $colorsAvail, $specs, $stock);
-      return $itemDiv
-      .addClass('modalItem');
-      */
-      
-    });
-    
-  
-        
-    // Sort toggle //
+        // Sort toggle //
     $("li").on('click', function(event){
       var $type = $(event.currentTarget);
       $type = $type.attr('type');
@@ -92,11 +93,108 @@ $(document).ready(function () {
         }else if($type === "all"){
           return itemsList.push(n)}}, 0);
       
-      console.log(itemsList[0].data('item'));
+     
        populateList(itemsList);
 
     });
     
+    var $form = $('.form');
+    var $search = $('#name');
+    var testArray = ["sam", 'samsung', ['test', 'samsung'],'save'];
+  
+    
+    
+      
+  
+      
+      $form.on('submit', function(e){
+      e.preventDefault();
+      var regex = new RegExp( $search.val(), "i");
+        var arrayOrObj = function(value){
+      if(value === null){
+        return false;
+      }else if (value instanceof Date){
+        return false;
+      }else if(typeof value  === "object"){
+        return true;
+      }else{
+        return false;
+      }
+    }
+    
+    var filtered = function(array){
+      /*
+      var k = []
+      //var id;
+      var list =  _.filter(array, function(e, i, c){
+        
+        
+        if(arrayOrObj(e)){
+          if(c.hasOwnProperty('id')){
+          var id = c;
+        }
+         return filtered(e);
+          
+        }else if (regex.test(e)){
+          if(c.hasOwnProperty('id')){
+          k.push(c);
+          }else{
+            k.push(id);
+          }
+          
+          return true
+          
+        }else {return false;
+          
+        }
+        
+      });
+                */
+                var id;
+                var fun = function(array){
+            var list = []; 
+            
+            var t = _.filter( array, function(e, i, c){
+               if(c.hasOwnProperty('id')){
+                  id = c; 
+               };
+              if(arrayOrObj(e)){
+               
+    
+               list.push(fun(e));
+               return fun(e);
+              }else{
+                //console.log(e);
+                if(regex.test(e)){
+                 
+                
+                  list.push(id);
+                  
+                  return true;
+                  
+                }else{
+                  return false;
+                }
+              
+              }
+            });
+            return  list;
+          }
+      
+        function flatten(arr) {
+          return arr.reduce(function (flat, toFlatten) {
+            return flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten);
+            
+          }, []);}
+          return  _.unique(flatten(fun(array)));
+      
+    };
+    populateList(filtered(items));
+    });
+    
+      
+    
+  
     
     
      
