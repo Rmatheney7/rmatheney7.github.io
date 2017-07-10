@@ -7,7 +7,7 @@ $(document).ready(function () {
   $.getJSON('data/product.json',function(data){
     
       
-   
+    var currentList;
     // Only X left in stock function //
     var itemsLeft = function(stock_num){
       if(stock_num <=10){
@@ -74,6 +74,7 @@ $(document).ready(function () {
      $('.stock').css('padding' , '20px 0px 60px 60px');
      $('.desc').css('padding-left', '40px' );
      
+     currentList = list;
      modalCreation();
    }
    
@@ -87,30 +88,22 @@ $(document).ready(function () {
       var $type = $(event.currentTarget);
       $type = $type.attr('type');
       var itemsList = [];
-      _.reduce(items, function(s,n){
+      _.reduce(currentList, function(s,n){
         if(n.type === $type){
           return  itemsList.push(n); 
         }else if($type === "all"){
           return itemsList.push(n)}}, 0);
       
-     
+      
        populateList(itemsList);
 
     });
     
     var $form = $('.form');
     var $search = $('#name');
-    var testArray = ["sam", 'samsung', ['test', 'samsung'],'save'];
+    var regex = new RegExp( $search.val(), "i");
   
-    
-    
-      
-  
-      
-      $form.on('submit', function(e){
-      e.preventDefault();
-      var regex = new RegExp( $search.val(), "i");
-        var arrayOrObj = function(value){
+    var arrayOrObj = function(value){
       if(value === null){
         return false;
       }else if (value instanceof Date){
@@ -120,68 +113,49 @@ $(document).ready(function () {
       }else{
         return false;
       }
-    }
+    };
     
-    var filtered = function(array){
-      /*
-      var k = []
-      //var id;
-      var list =  _.filter(array, function(e, i, c){
-        
-        
-        if(arrayOrObj(e)){
-          if(c.hasOwnProperty('id')){
-          var id = c;
-        }
-         return filtered(e);
-          
-        }else if (regex.test(e)){
-          if(c.hasOwnProperty('id')){
-          k.push(c);
-          }else{
-            k.push(id);
-          }
-          
-          return true
-          
-        }else {return false;
-          
-        }
-        
-      });
-                */
-                var id;
-                var fun = function(array){
-            var list = []; 
-            
-            var t = _.filter( array, function(e, i, c){
-               if(c.hasOwnProperty('id')){
-                  id = c; 
-               };
-              if(arrayOrObj(e)){
-               
-    
-               list.push(fun(e));
-               return fun(e);
-              }else{
-                //console.log(e);
-                if(regex.test(e)){
-                 
-                
-                  list.push(id);
-                  
-                  return true;
-                  
-                }else{
-                  return false;
-                }
-              
-              }
-            });
-            return  list;
-          }
       
-        function flatten(arr) {
+  
+      
+      $form.on('submit', function(e){
+        e.preventDefault();
+        var filtered = function(array){
+      var id;
+      var fun = function(array){
+        var list = []; 
+        var t = _.filter( array, function(e, i, c){
+          if(c.hasOwnProperty('id')){
+            id = c; 
+            console.log('#1',c);
+            
+          }
+          if(arrayOrObj(e)){
+            list.push(fun(e));
+            console.log('#2', fun(e));
+            return fun(e);
+            
+          }else{
+            //console.log(e);
+            if(regex.test(e)){
+              list.push(id);
+              console.log('#3', id);
+              return true;
+              
+            }else{
+              return false;
+              
+            }
+            
+          }
+          
+          
+        });
+        
+        return  list;
+        
+      };
+      function flatten(arr) {
           return arr.reduce(function (flat, toFlatten) {
             return flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten);
             
@@ -189,7 +163,8 @@ $(document).ready(function () {
           return  _.unique(flatten(fun(array)));
       
     };
-    populateList(filtered(items));
+    currentList = filtered(items);
+    populateList(currentList);
     });
     
       
