@@ -57,6 +57,7 @@ $(document).ready(function () {
       let $stock = $('<div>').text(itemsLeft(item.stock)).addClass("col-md-4").addClass("stock");
       if(item.stock <= 10){$stock.addClass('red')} // Low stock Alert //
       let $itemDiv = $('<div>').append( $imageDiv, $desc, $price,$stock);
+      toggle();
        return $itemDiv
       .addClass('item')
       .addClass("row ")
@@ -84,7 +85,7 @@ $(document).ready(function () {
       
       
         // Sort toggle //
-    $("li").on('click', function(event){
+    var toggle =  function(){ $("li").on('click', function(event){
       var $type = $(event.currentTarget);
       $type = $type.attr('type');
       var itemsList = [];
@@ -97,7 +98,7 @@ $(document).ready(function () {
       
        populateList(itemsList);
 
-    });
+    });};
     
     var $form = $('.form');
     var $search = $('#name');
