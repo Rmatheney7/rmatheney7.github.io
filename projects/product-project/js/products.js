@@ -301,10 +301,11 @@ $(document).ready(function () {
     
     
     
-  }); 
+  })
   
   
   
   
   // ALL YOUR CODE GOES ABOVE HERE //
+  .fail(function() { console.log('getJSON on discography failed!'); });
 });
