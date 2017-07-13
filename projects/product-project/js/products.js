@@ -1,5 +1,5 @@
-/* global $ _ */
 
+/*global $ _ opspark */
 $(document).ready(function () {
   // ALL YOUR CODE GOES BELOW HERE //
   
