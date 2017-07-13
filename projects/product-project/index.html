@@ -18,7 +18,8 @@
     <body>
         <div id="container" class='container'>
             <nav>
-                <div class="containter"> 
+                <div id="div2" class="containter">
+                     
                     <div class="flex-row">
                         <div>
                             <h1 >Product Project</h1>
@@ -28,24 +29,24 @@
                         
                         <div class="flex-row">
                              <div class="dropdown">
-                              <button ><a href="#myDropdown"  data-toggle="collapse" >Sort By</a></button>
+                              <button ><a id='sort' href='#myDropdown'data-toggle="collapse" >Sort By</a></button>
                               <div id="myDropdown" class="collapse dropdown-content" >
                                   <ul>
-                                      <li type="all" data="all"><a href="#myDropdown"  data-toggle="collapse" >All Products</a></li>
-                                      <li type="phone" data='phone'><a href="#myDropdown"  data-toggle="collapse" >Phones Only</a></li>
-                                      <li type="case" data='case'><a href="#myDropdown"  data-toggle="collapse" >Cases Only</a></li>
+                                      <li type="all" data="All Results"><a  href="#myDropdown"  data-toggle="collapse" >All</a></li>
+                                      <li type="phone" data='Phones'><a  href="#myDropdown"  data-toggle="collapse" >Phones Only</a></li>
+                                      <li type="case" data='Cases'><a  href="#myDropdown"  data-toggle="collapse" >Cases Only</a></li>
                                   </ul>
                               </div>
                             </div>
                             <div>
                                 <form class="col-md-6 form" >
                             <div>
-                                <input type="text" id="name" />
+                                <input type="text" id="name" placeholder='What do you want?' />
                             </div> 
                             </div>
                             
                             <div>
-                                <button >Search</button>
+                                <button id="searchButton">Search</button>
                             </div>
                             
                         </div>
@@ -60,13 +61,13 @@
                     
                     
                 </div>
-                <div class="container" style="padding-top : 60px;">
+                <div class="container  " style="padding-top : 60px;">
                     <div class="modal" id='itemModal'>
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class='modal-header'> 
                                     <h2 class="modal-title" id="h2"></h2>
-                                    <button class="close" type="button" data-dismiss="modal">x</button>
+                                    <button class="close" type="button" data-dismiss="modal">Close</button>
                                 </div>
                                 <div class="modal-body" >
                                     <div id="body"></div>
@@ -84,8 +85,8 @@
         </div>
         <script>
             $(function () {
-                window.opspark.notes.show();
-               // window.opspark.notes.hide();
+               // window.opspark.notes.show();
+                window.opspark.notes.hide();
             });
         </script>
     </body>
